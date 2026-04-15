@@ -1,0 +1,22 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        res = ''
+        for word in strs:
+            count = str(len(word))
+            res += (count +'#'+ word)
+        return res
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        while i < len(s):
+            j = i
+            while s[j] != "#":
+                j += 1
+            count = int(s[i:j])
+            word = s[j+1:j+1+count]
+            res.append(word)
+            i = j + 1 + count
+        return res
